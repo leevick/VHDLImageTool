@@ -1,2 +1,2 @@
-gcc -g raw2vhd.c -o Debug/raw2vhd
-gcc raw2vhd.c -o Release/raw2vhd
+gcc -g raw2hex.c -o Debug/raw2hex
+gcc raw2hex.c -o Release/raw2hex
