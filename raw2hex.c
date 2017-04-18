@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void main(int argc,char* argv[])
+void convert(char *filein,char *fileout)
 {
-    FILE *p = fopen(argv[1],"rb");
-    FILE *q = fopen("hex.data","wb+");
+    FILE *p = fopen(filein,"rb");
+    FILE *q = fopen(fileout,"wb+");
     unsigned char *byte = (unsigned char *)malloc(1);
     unsigned char *buffer = (unsigned char*)malloc(1024*1024*16);
     int cnt=0;
@@ -31,5 +31,21 @@ void main(int argc,char* argv[])
     fclose(q);
     free(byte);
     free(buffer);
+}
+
+void main(int argc,char* argv[])
+{
+    char * filein = (char *)malloc(100);
+    char * fileout = (char *)malloc(100);
+    int start,end,cnt;
+    sscanf(argv[1],"%d",&start);
+    sscanf(argv[2],"%d",&end);
+    cnt = end - start +1;
+    for(int i=0;i<cnt;i++)
+    {
+        sprintf(filein,"%d.raw",i+start);
+        sprintf(fileout,"%d.data",i+start);
+        convert(filein,fileout);
+    }
 
 }
